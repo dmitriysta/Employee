@@ -1,1 +1,2 @@
-readme.txt
+readme.txt - прочти меня
+А потом удали
