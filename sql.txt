@@ -1,0 +1,79 @@
+Спроектировать БД для соц.сети: (сделать запросы Create Table)
+- user
+- friends
+- group
+- followers
+- city
+- country
+- relations (женат, встречается)
+
+CREATE DATABASE IF EXISTS social_network;
+
+USE social_network;
+
+CREATE TABLE country (
+    id INT UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(50) NOT NULL
+);
+
+CREATE TABLE city (
+    id INT UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(50) NOT NULL,
+    country_id INT UNSIGNED NOT NULL,
+    FOREIGN KEY (country_id) REFERENCES country(id)
+);
+
+CREATE TABLE group (
+    id INT UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(50) NOT NULL,
+    description VARCHAR(150) NOT NULL
+);
+
+CREATE TABLE relations (
+    id INT UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(50) NOT NULL
+);
+
+CREATE TABLE user (
+    id INT UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(50) NOT NULL,
+    surname VARCHAR(50) NOT NULL,
+    email VARCHAR(50) NOT NULL,
+    relations_id INT UNSIGNED NOT NULL
+);
+
+CREATE TABLE friends (
+    id INT UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    user_id INT NOT NULL,
+    friend_id INT NOT NULL,
+    FOREIGN KEY (user_id) REFERENCES user(id),
+    FOREIGN KEY (friend_id) REFERENCES user(id)
+);
+
+CREATE TABLE followers (
+    id INT UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    user_id INT NOT NULL,
+    follower_id INT NOT NULL,
+    FOREIGN KEY (user_id) REFERENCES user(id),
+    FOREIGN KEY (follower_id) REFERENCES user(id)
+);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
